@@ -3,12 +3,12 @@ import { cn } from "../utils/cn";
 
 function SwarmVisualizer() {
   return (
-    <div className="relative w-full h-48 bg-[#0A0A0A] rounded-xl overflow-hidden flex items-center justify-center border border-white/5">
+    <div className="relative w-full h-48 bg-[var(--bg)] rounded-xl overflow-hidden flex items-center justify-center border border-[var(--border)]">
       <div className="absolute inset-0 bg-grid-overlay opacity-20" />
       
       {/* Central Hub */}
-      <div className="relative z-10 w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-[0_0_30px_rgba(255,255,255,0.2)]">
-        <span className="font-sans font-bold text-[#0A0A0A] text-xs">A</span>
+      <div className="relative z-10 w-12 h-12 rounded-full bg-[var(--accent)] flex items-center justify-center shadow-[0_0_30px_var(--accent-glow)]">
+        <span className="font-sans font-bold text-[var(--bg)] text-xs">A</span>
       </div>
 
       {/* Orbiting Nodes */}
@@ -20,7 +20,7 @@ function SwarmVisualizer() {
       ].map((node, i) => (
         <div
           key={i}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[var(--border)]"
           style={{ width: node.r * 2, height: node.r * 2 }}
         >
           <div
@@ -28,9 +28,9 @@ function SwarmVisualizer() {
             style={{ animation: `spin ${node.s}s linear infinite` }}
           >
             <div
-              className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-[#141414] border border-white/20 flex items-center justify-center"
+              className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-[var(--surface)] border border-[var(--border-hover)] flex items-center justify-center"
             >
-              <span className="font-mono text-[0.45rem] text-white" style={{ animation: `spin-reverse ${node.s}s linear infinite` }}>
+              <span className="font-mono text-[0.45rem] text-[var(--text)]" style={{ animation: `spin-reverse ${node.s}s linear infinite` }}>
                 {node.l}
               </span>
             </div>
@@ -65,7 +65,7 @@ function PerformanceFeed() {
   }, []);
 
   return (
-    <div className="relative w-full h-48 bg-[#0A0A0A] rounded-xl overflow-hidden p-4 border border-white/5 flex flex-col justify-end">
+    <div className="relative w-full h-48 bg-[#141414] rounded-xl overflow-hidden p-4 border border-[var(--border)] flex flex-col justify-end">
       <div className="absolute top-4 right-4 flex items-center gap-2">
         <span className="font-mono text-[0.5rem] text-[#6B6B6B] uppercase tracking-widest">Live Feed</span>
         <div className="w-1.5 h-1.5 rounded-full bg-[#E53E3E] animate-ping-slow" />
@@ -127,14 +127,14 @@ function ContentScheduler() {
   }, []);
 
   return (
-    <div className="relative w-full h-48 bg-[#0A0A0A] rounded-xl overflow-hidden p-6 border border-white/5 flex flex-col items-center justify-center">
+    <div className="relative w-full h-48 bg-[var(--bg)] rounded-xl overflow-hidden p-6 border border-[var(--border)] flex flex-col items-center justify-center">
       <div className="grid grid-cols-7 gap-2 w-full max-w-[200px] mb-6">
         {days.map((d, i) => (
           <div 
             key={i} 
             className={cn(
               "aspect-square rounded flex items-center justify-center text-[0.5rem] font-mono transition-colors duration-300",
-              i === activeCell ? "bg-white text-[#0A0A0A]" : "bg-[#141414] text-[#6B6B6B]"
+              i === activeCell ? "bg-[var(--accent)] text-[var(--bg)]" : "bg-[var(--surface)] text-[var(--text-muted)]"
             )}
           >
             {d}
@@ -142,15 +142,15 @@ function ContentScheduler() {
         ))}
       </div>
       
-      <div className="w-24 h-6 rounded bg-[#141414] border border-white/10 flex items-center justify-center">
-        <span className="font-mono text-[0.5rem] text-[#A0A0A0] uppercase tracking-widest">Publish</span>
+      <div className="w-24 h-6 rounded bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center">
+        <span className="font-mono text-[0.5rem] text-[var(--text-dim)] uppercase tracking-widest">Publish</span>
       </div>
 
       {/* SVG Cursor */}
       <svg 
         className={cn(
-          "absolute w-4 h-4 text-white transition-all duration-500 ease-out z-20",
-          clicked && "scale-75 text-[#E53E3E]"
+          "absolute w-4 h-4 text-[var(--text)] transition-all duration-500 ease-out z-20",
+          clicked && "scale-75 text-[var(--alert)]"
         )}
         style={{ left: `${cursorPos.x}%`, top: `${cursorPos.y}%` }}
         viewBox="0 0 24 24" 
@@ -166,43 +166,69 @@ export default function CampaignModules() {
   const modules = [
     {
       id: "01",
-      title: "Paid Media Management",
+      title: "Paid Media Operations",
       desc: "Algorithmic ad buying across Meta, TikTok, and Google. We don't guess; we engineer ROAS.",
+      deliverables: [
+        "Full META + TikTok ad management",
+        "Creative testing (8-12 variants/month)",
+        "Weekly ROAS & spend reports",
+        "Retargeting funnel architecture"
+      ],
       ui: <SwarmVisualizer />
     },
     {
       id: "02",
-      title: "Content Production",
+      title: "Content Production System",
       desc: "High-volume, platform-native creative systems designed to capture attention and convert.",
+      deliverables: [
+        "30-90 short-form videos/month",
+        "Platform-native editing (TT, Reels, Shorts)",
+        "Content calendar + approval workflow",
+        "Trend monitoring & reactive content"
+      ],
       ui: <PerformanceFeed />
     },
     {
       id: "03",
-      title: "Influencer Partnerships",
+      title: "Strategic Growth Architecture",
       desc: "Scalable creator networks deployed to amplify your brand narrative authentically.",
+      deliverables: [
+        "Audience persona mapping",
+        "Competitor analysis dashboard",
+        "Influencer/UGC sourcing & management",
+        "Monthly strategy sessions (recorded)"
+      ],
       ui: <ContentScheduler />
     }
   ];
 
   return (
-    <section id="services" className="w-full py-24 md:py-32 px-6 md:px-16 bg-[#0A0A0A]">
+    <section id="services" className="w-full py-24 md:py-32 px-6 md:px-16 bg-[var(--bg)] transition-colors duration-500">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {modules.map((mod, i) => (
             <div 
               key={mod.id}
-              className="scroll-reveal group flex flex-col bg-[#141414] border border-white/5 rounded-[2rem] p-6 transition-all duration-500 hover:border-white/20 hover:-translate-y-1"
-              style={{ transitionDelay: `${i * 150}ms` }}
+              className="scroll-reveal group flex flex-col bg-[var(--surface)] border border-[var(--border)] rounded-[2rem] p-6 transition-all duration-500 hover:border-[var(--border-hover)] hover:-translate-y-1"
+              style={{ transitionDelay: `${i * 150}ms`, boxShadow: 'var(--card-shadow)' }}
             >
-              <div className="font-mono text-[0.65rem] text-[#6B6B6B] mb-6">
+              <div className="font-mono text-[0.65rem] text-[var(--text-muted)] mb-6">
                 {mod.id} — {mod.title.toUpperCase()}
               </div>
               
               {mod.ui}
 
               <div className="mt-8">
-                <h3 className="font-sans font-bold text-xl text-white mb-2">{mod.title}</h3>
-                <p className="font-sans text-sm text-[#A0A0A0] leading-relaxed">{mod.desc}</p>
+                <h3 className="font-sans font-bold text-xl text-[var(--text)] mb-2">{mod.title}</h3>
+                <p className="font-sans text-sm text-[var(--text-dim)] leading-relaxed mb-4">{mod.desc}</p>
+                <ul className="flex flex-col gap-2 font-mono text-[0.75rem] text-[var(--text-muted)]">
+                  {mod.deliverables.map((item, j) => (
+                    <li key={j} className="flex items-start gap-2">
+                      <span className="text-[var(--alert)]">↳</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           ))}

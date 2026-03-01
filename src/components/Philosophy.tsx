@@ -24,18 +24,18 @@ export default function Philosophy() {
     return () => observer.disconnect();
   }, []);
 
-  const line1 = "Most agencies post content. They call it strategy.".split(" ");
-  const line2 = "We deploy".split(" ");
+  const line1 = "Most agencies sell you posts. They call it a strategy. They bill monthly. They deliver excuses.".split(" ");
+  const line2 = "We deploy systems that print revenue while you".split(" ");
 
   return (
-    <section className="w-full py-32 md:py-48 bg-[#050505] border-y border-white/5 flex items-center justify-center px-6">
+    <section className="w-full py-32 md:py-48 bg-[var(--surface)] border-y border-[var(--border)] flex items-center justify-center px-6 transition-colors duration-500">
       <div ref={containerRef} className="max-w-5xl mx-auto flex flex-col items-center text-center gap-8">
         
         <div className="flex flex-wrap justify-center gap-x-2 gap-y-1">
           {line1.map((word, i) => (
             <span
               key={i}
-              className="word-reveal opacity-0 translate-y-4 transition-all duration-500 font-sans text-xl md:text-2xl text-[#6B6B6B]"
+              className="word-reveal opacity-0 translate-y-4 transition-all duration-500 font-sans text-xl md:text-2xl text-[var(--text-muted)]"
             >
               {word}
             </span>
@@ -46,13 +46,13 @@ export default function Philosophy() {
           {line2.map((word, i) => (
             <span
               key={i}
-              className="word-reveal opacity-0 translate-y-4 transition-all duration-500 font-sans font-bold text-4xl md:text-6xl lg:text-7xl text-white tracking-tight"
+              className="word-reveal opacity-0 translate-y-4 transition-all duration-500 font-sans font-bold text-4xl md:text-6xl lg:text-7xl text-[var(--text)] tracking-tight"
             >
               {word}
             </span>
           ))}
-          <span className="word-reveal opacity-0 translate-y-4 transition-all duration-500 font-serif italic text-5xl md:text-7xl lg:text-8xl text-white text-shadow-glow pr-2">
-            systems.
+          <span className="word-reveal opacity-0 translate-y-4 transition-all duration-500 font-serif italic text-5xl md:text-7xl lg:text-8xl text-[var(--accent)] text-shadow-glow pr-2" style={{ opacity: 'var(--hero-italic-opacity)' }}>
+            sleep.
           </span>
         </div>
 

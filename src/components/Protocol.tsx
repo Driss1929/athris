@@ -4,26 +4,30 @@ import { cn } from "../utils/cn";
 const steps = [
   {
     id: "001",
-    title: "Audit",
-    desc: "We analyze your brand, audience, competitors, and gaps. Data extraction and performance baselining.",
+    badge: "Week 1",
+    title: "Deep Scan",
+    desc: "We dissect your brand, audience, competitors, and every dollar you've ever spent on ads. Nothing gets deployed until we know exactly where the leverage is.",
+    outcome: "→ Output: 47-point Brand Audit Report + Strategy Brief",
     icon: (
       <div className="relative w-16 h-16 flex items-center justify-center">
-        <div className="absolute inset-0 rounded-full border border-white/20 animate-ping-slow" style={{ animationDuration: '4s' }} />
-        <div className="absolute inset-2 rounded-full border border-white/40 animate-ping-slow" style={{ animationDuration: '3s' }} />
-        <div className="w-2 h-2 rounded-full bg-white shadow-[0_0_15px_rgba(255,255,255,0.8)]" />
+        <div className="absolute inset-0 rounded-full border border-[var(--border-hover)] animate-ping-slow" style={{ animationDuration: '4s' }} />
+        <div className="absolute inset-2 rounded-full border border-[var(--border)] animate-ping-slow" style={{ animationDuration: '3s' }} />
+        <div className="w-2 h-2 rounded-full bg-[var(--accent)] shadow-[0_0_15px_var(--accent-glow)]" />
       </div>
     )
   },
   {
     id: "002",
-    title: "Architect",
-    desc: "We build the strategy, content system, and ad infrastructure. Engineering the conversion pipeline.",
+    badge: "Week 2-3",
+    title: "System Design",
+    desc: "We build your content engine, ad infrastructure, targeting architecture, and reporting dashboard. Every piece connects. Nothing is manual.",
+    outcome: "→ Output: Campaign Blueprint + Content System + Ad Account Build",
     icon: (
       <div className="relative w-16 h-16 flex items-center justify-center gap-1">
         {[1, 2, 3, 4, 5].map((i) => (
           <div 
             key={i} 
-            className="w-1.5 bg-white/60 rounded-full animate-pulse"
+            className="w-1.5 bg-[var(--text-muted)] rounded-full animate-pulse"
             style={{ 
               height: `${20 + Math.random() * 40}px`, 
               animationDelay: `${i * 0.2}s`,
@@ -36,11 +40,13 @@ const steps = [
   },
   {
     id: "003",
-    title: "Deploy",
-    desc: "We launch, optimize, and scale your campaigns. Real-time telemetry and algorithmic scaling.",
+    badge: "Week 4+",
+    title: "Launch & Scale",
+    desc: "Campaigns go live. Content starts shipping. Data flows in. We optimize daily, report weekly, and scale what works ruthlessly.",
+    outcome: "→ Output: Live Campaigns + Weekly Reports + Monthly Strategy Calls",
     icon: (
       <div className="relative w-16 h-16 flex items-center justify-center">
-        <svg viewBox="0 0 100 50" className="w-full h-full stroke-white stroke-2 fill-none">
+        <svg viewBox="0 0 100 50" className="w-full h-full stroke-[var(--text)] stroke-2 fill-none">
           <path 
             d="M 0 25 L 20 25 L 30 10 L 50 40 L 70 25 L 100 25" 
             strokeDasharray="200"
@@ -79,14 +85,14 @@ export default function Protocol() {
   }, []);
 
   return (
-    <section id="protocol" className="w-full py-24 md:py-48 bg-[#0A0A0A] relative">
+    <section id="protocol" className="w-full py-24 md:py-48 bg-[var(--bg)] relative transition-colors duration-500">
       <div className="max-w-3xl mx-auto px-6 md:px-16" ref={containerRef}>
         
         <div className="mb-24 text-center">
-          <h2 className="font-sans font-bold text-3xl md:text-5xl text-white tracking-tight mb-4">
+          <h2 className="font-sans font-bold text-3xl md:text-5xl text-[var(--text)] tracking-tight mb-4">
             Mission Sequence
           </h2>
-          <p className="font-mono text-xs uppercase tracking-widest text-[#6B6B6B]">
+          <p className="font-mono text-xs uppercase tracking-widest text-[var(--text-muted)]">
             Standard Operating Procedure
           </p>
         </div>
@@ -96,25 +102,33 @@ export default function Protocol() {
             <div 
               key={step.id}
               className={cn(
-                "protocol-card sticky top-[15vh] md:top-[20vh] w-full bg-[#141414] border border-white/10 rounded-[2rem] p-8 md:p-12 transition-all duration-700 ease-out flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-12",
+                "protocol-card sticky top-[15vh] md:top-[20vh] w-full bg-[var(--surface)] border border-[var(--border)] rounded-[2rem] p-8 md:p-12 transition-all duration-700 ease-out flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-12",
                 i < activeStep ? "scale-[0.95] opacity-40 blur-[4px] -translate-y-8" : "scale-100 opacity-100 blur-0 translate-y-0"
               )}
-              style={{ zIndex: i }}
+              style={{ zIndex: i, boxShadow: 'var(--card-shadow)' }}
             >
               <div className="flex flex-col gap-6 w-full md:w-1/3">
-                <span className="font-mono text-sm text-[#6B6B6B]">
-                  {step.id}
-                </span>
+                <div className="flex items-center gap-4">
+                  <span className="font-mono text-sm text-[var(--text-muted)]">
+                    {step.id}
+                  </span>
+                  <span className="font-mono text-[0.65rem] uppercase tracking-widest text-[var(--alert)] bg-[var(--alert)]/10 px-2 py-1 rounded border border-[var(--alert)]/20">
+                    {step.badge}
+                  </span>
+                </div>
                 {step.icon}
               </div>
 
               <div className="flex flex-col gap-4 w-full md:w-2/3">
-                <h3 className="font-sans font-bold text-2xl md:text-4xl text-white tracking-tight">
+                <h3 className="font-sans font-bold text-2xl md:text-4xl text-[var(--text)] tracking-tight">
                   {step.title}
                 </h3>
-                <p className="font-sans text-[#A0A0A0] text-base md:text-lg leading-relaxed">
+                <p className="font-sans text-[var(--text-dim)] text-base md:text-lg leading-relaxed">
                   {step.desc}
                 </p>
+                <div className="mt-2 font-mono text-sm text-[var(--alert)]">
+                  {step.outcome}
+                </div>
               </div>
             </div>
           ))}

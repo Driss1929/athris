@@ -1,13 +1,13 @@
 import { useEffect, useState, useRef } from "react";
 
 const metrics = [
-  { label: "BRANDS SCALED", value: 50, suffix: "+" },
-  { label: "AD SPEND MANAGED", value: 12, suffix: "M+" },
-  { label: "AVG. ROAS", value: 4.8, suffix: "x" },
-  { label: "CONTENT PIECES/MO", value: 1200, suffix: "+" },
+  { label: "AD SPEND MANAGED", value: 2.4, prefix: "€", suffix: "M+" },
+  { label: "AVG. CLIENT ROAS", value: 4.7, prefix: "", suffix: "x" },
+  { label: "BRANDS PARTNERED", value: 47, prefix: "", suffix: "" },
+  { label: "CONTENT PIECES DEPLOYED", value: 12000, prefix: "", suffix: "+" },
 ];
 
-function Counter({ end, suffix, decimals = 0 }: { end: number; suffix: string; decimals?: number }) {
+function Counter({ end, prefix = "", suffix, decimals = 0 }: { end: number; prefix?: string; suffix: string; decimals?: number }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
 
@@ -45,16 +45,16 @@ function Counter({ end, suffix, decimals = 0 }: { end: number; suffix: string; d
   }, [end]);
 
   return (
-    <span ref={ref} className="font-sans font-bold text-3xl md:text-4xl lg:text-5xl text-white">
-      {count.toFixed(decimals)}
-      <span className="text-[#E53E3E]">{suffix}</span>
+    <span ref={ref} className="font-sans font-bold text-3xl md:text-4xl lg:text-5xl text-[var(--text)]">
+      {prefix}{count.toFixed(decimals)}
+      <span className="text-[var(--alert)]">{suffix}</span>
     </span>
   );
 }
 
 export default function Telemetry() {
   return (
-    <section className="w-full bg-[#141414] border-y border-white/10 py-12 md:py-16">
+    <section className="w-full bg-[var(--surface)] border-y border-[var(--border)] py-12 md:py-16 transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-6 md:px-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
           {metrics.map((metric, i) => (
@@ -65,10 +65,11 @@ export default function Telemetry() {
             >
               <Counter 
                 end={metric.value} 
+                prefix={metric.prefix}
                 suffix={metric.suffix} 
                 decimals={metric.value % 1 !== 0 ? 1 : 0} 
               />
-              <span className="font-mono text-[0.65rem] tracking-widest uppercase text-[#6B6B6B]">
+              <span className="font-mono text-[0.65rem] tracking-widest uppercase text-[var(--text-muted)]">
                 {metric.label}
               </span>
             </div>
