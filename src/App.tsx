@@ -33,7 +33,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="relative min-h-screen w-full bg-[#0A0A0A] text-[#F5F5F5] font-sans overflow-x-hidden">
+    <div className="relative min-h-screen w-full bg-[var(--bg)] text-[var(--text)] font-sans overflow-x-hidden transition-colors duration-500">
       {/* Global Noise Overlay */}
       <svg className="noise-overlay">
         <filter id="noiseFilter">

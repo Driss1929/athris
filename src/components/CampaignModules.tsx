@@ -65,30 +65,30 @@ function PerformanceFeed() {
   }, []);
 
   return (
-    <div className="relative w-full h-48 bg-[#141414] rounded-xl overflow-hidden p-4 border border-[var(--border)] flex flex-col justify-end">
+    <div className="relative w-full h-48 rounded-xl overflow-hidden p-4 border flex flex-col justify-end" style={{ backgroundColor: 'var(--status-pill-bg)', borderColor: 'var(--status-pill-border)' }}>
       <div className="absolute top-4 right-4 flex items-center gap-2">
-        <span className="font-mono text-[0.5rem] text-[#6B6B6B] uppercase tracking-widest">Live Feed</span>
-        <div className="w-1.5 h-1.5 rounded-full bg-[#E53E3E] animate-ping-slow" />
+        <span className="font-mono text-[0.5rem] uppercase tracking-widest" style={{ color: 'var(--status-pill-text)' }}>Live Feed</span>
+        <div className="w-1.5 h-1.5 rounded-full bg-[var(--alert)] animate-ping-slow" />
       </div>
       
-      <div className="flex flex-col gap-2 font-mono text-[0.65rem] text-[#A0A0A0]">
+      <div className="flex flex-col gap-2 font-mono text-[0.65rem]" style={{ color: 'var(--status-pill-text)' }}>
         {visibleLogs.map((log, i) => (
           <div 
             key={i} 
             className="animate-in slide-in-from-bottom-2 fade-in duration-300"
             style={{ opacity: (i + 1) / visibleLogs.length }}
           >
-            <span className="text-[#6B6B6B]">{`> `}</span>
+            <span style={{ color: 'var(--status-pill-text)' }}>{`> `}</span>
             {log.includes("ALERT") || log.includes("ROAS") ? (
-              <span className="text-white">{log}</span>
+              <span className="text-[#F5F5F5]">{log}</span>
             ) : (
               log
             )}
           </div>
         ))}
         <div className="flex items-center gap-1">
-          <span className="text-[#6B6B6B]">{`> `}</span>
-          <span className="w-1.5 h-3 bg-white animate-pulse" />
+          <span style={{ color: 'var(--status-pill-text)' }}>{`> `}</span>
+          <span className="w-1.5 h-3 bg-[#F5F5F5] animate-pulse" />
         </div>
       </div>
     </div>

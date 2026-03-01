@@ -42,7 +42,7 @@ export default function Hero() {
   return (
     <section className="relative min-h-[100dvh] flex flex-col justify-end pb-16 md:pb-24 px-6 md:px-16 overflow-hidden">
       {/* Background Layers */}
-      <div className="absolute inset-0 bg-grid-overlay opacity-40 mix-blend-screen pointer-events-none" />
+      <div className="absolute inset-0 bg-grid-overlay opacity-40 pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[800px] max-h-[800px] rounded-full blur-[120px] pointer-events-none" style={{ background: 'var(--hero-glow)' }} />
       <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-[var(--bg)] to-transparent pointer-events-none" />
 
@@ -78,7 +78,7 @@ export default function Hero() {
             <span className="animate-ping-slow absolute inline-flex h-full w-full rounded-full bg-[var(--alert)] opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--alert)]"></span>
           </div>
-          <span className="font-mono text-[0.65rem] tracking-widest uppercase text-[var(--text-muted)]">
+          <span className="font-mono text-[0.65rem] tracking-widest uppercase" style={{ color: 'var(--status-pill-text)' }}>
             SYSTEMS ONLINE — 50+ CAMPAIGNS ACTIVE
           </span>
         </div>
@@ -108,8 +108,8 @@ export default function Hero() {
             </span>
           </button>
 
-          <div className="flex items-center gap-2 font-mono text-xs text-[var(--text-muted)] px-3 py-1.5 rounded-md border" style={{ backgroundColor: '#141414', borderColor: 'rgba(255,255,255,0.05)' }}>
-            <span className="text-[#A0A0A0]">root@athris:~$</span>
+          <div className="flex items-center gap-2 font-mono text-xs text-[var(--text-muted)] px-3 py-1.5 rounded-md border" style={{ backgroundColor: 'var(--status-pill-bg)', borderColor: 'var(--status-pill-border)' }}>
+            <span style={{ color: 'var(--status-pill-text)' }}>root@athris:~$</span>
             <span className="text-[#F5F5F5]">{text}</span>
             <span className="w-2 h-4 bg-[var(--alert)] animate-pulse" />
           </div>
